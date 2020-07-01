@@ -1,6 +1,6 @@
-@Login@Ex
 Feature: User Login and Logout from Naukri Portal
 
+@Login
 Scenario Outline: Testing Login Feature of Naukri Portal with valid credentials
 Given User is on homepage
 When User clicks on Login Button
@@ -13,9 +13,11 @@ Examples:
 |Username2|Password2|
 
 
-@Logout@Single
+@Logout
 Scenario: Testing Logout Feature of Naukri Portal
-Given User is logged into his Naukri Account
+Given User is on homepage
+When User clicks on Login Button
+And User enters "anirudho747@gmail.com" and "Gmail@2020"
 When User's mouse hovers over My Naukri Option
 And User clicks on Logout Option
 Then User should be logged out of Naukri portal  

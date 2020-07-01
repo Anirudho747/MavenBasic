@@ -9,9 +9,11 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(
 		         features= {"classpath:Login/Lgn2.feature"},
 		         glue= {"stepDef"},
-		         dryRun=false
+		         dryRun=false,
+		         tags="@Updt"
 		)
    
 public class TestRunner {
 
 }
+ 
