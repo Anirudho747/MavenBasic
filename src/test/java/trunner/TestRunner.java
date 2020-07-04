@@ -7,13 +7,14 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		         features= {"classpath:Login/Lgn2.feature"},
+		         features= {"classpath:Login/Lgn3.feature"},
 		         glue= {"stepDef"},
 		         dryRun=false,
-		         tags="@Updt"
+		         monochrome=true,
+		         tags="@Alrt"
 		)
    
 public class TestRunner {
 
-}
+}	
  

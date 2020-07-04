@@ -93,8 +93,8 @@ public class Profile_Details {
 	public void Updt_Resume_And_ResumeHeadline()
 	{
 		remove_strip();
-		Resume.sendKeys("D:\\Progs\\Resume\\Resume7.pdf");
-		driver.manage().timeouts().implicitlyWait(160,TimeUnit.SECONDS);
+	//	Resume.sendKeys("D:\\Progs\\Resume\\Resume7.pdf");
+	//	driver.manage().timeouts().implicitlyWait(160,TimeUnit.SECONDS);
 		JavascriptExecutor js = (JavascriptExecutor)driver;
     	js.executeScript("arguments[0].scrollIntoView(true)", Resume_HL);
     	Resume_HL.click();

@@ -76,7 +76,7 @@ public class Set_Exprnc {
 		for(int i=0;i<7;i++)
 		{
 			try {
-				WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(70));
+				WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(700));
 				wait.until(ExpectedConditions.elementToBeClickable(Cookies_Bar));
 		        Cookies_Bar.click();
 		        break;

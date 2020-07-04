@@ -21,11 +21,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import Pages.HomePage;
 import Pages.Hover_over_Naukri;
+import Pages.JobAlert;
 import Pages.Lgout_Cnfrm;
 import Pages.Load_HP;
 import Pages.Profile_Details;
+import Pages.Rcrtr;
 import Pages.Set_Exprnc;
-import Pages.click_Login;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
@@ -48,8 +49,7 @@ public class sDef {
 		
 	}
 
-	
-       @Given("User is on homepage")
+     @Given("User is on homepage")
     public void user_is_on_homepage() throws IOException {
     	 
     	   Load_HP lhp = new Load_HP(driver);
@@ -145,8 +145,7 @@ public class sDef {
     	Profile_Details  updt_Resume = new Profile_Details(driver);
     	updt_Resume.Updt_Resume_And_ResumeHeadline();
     }
-	
-	
+		
 	@Then("User should be able to verify {string} and {string}")
 	public void user_should_be_able_to_verify_and(String name, String nmber) {
 	
@@ -154,10 +153,78 @@ public class sDef {
 		vrfy.verification(name, nmber);
 	}
 	
+	@When("User clicks on Recruiter Tab")
+	public void user_clicks_on_Recruiter_Tab() {
+		
+		HomePage hp = new HomePage(driver);
+		hp.click_recrtr();
+		
+		}
+	
+	@When("User searches for Recuiter {string} in {string}")
+	public void user_searches_for_Recuiter_in(String skill, String city) {
+		
+		Rcrtr r = new Rcrtr(driver);
+		r.srch_rcrtr(skill, city);
+	}
+
+	@When("user selects Recruiter {string}")
+	public void user_selects_Recruiter(String city) {
+	
+		Rcrtr r = new Rcrtr(driver);
+		r.Slct_City(city);
+	}
+	
+	@When("clicks on Manage and Modify Alert")
+	public void clicks_on_Manage_and_Modify_Alert() {
+	  //driver.manage().timeouts().implicitlyWait(160,TimeUnit.SECONDS);	
+	 /* WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(250)); 
+	  wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//a[text()='Manage Alerts']"))));
+	  driver.findElement(By.xpath("//a[text()='Manage Alerts']")).click();
+	  driver.findElement(By.xpath("//th[text()='Alert Name']//following::a[text()='Modify Alert'][1]")).click();
+	  */
+		JobAlert ja = new JobAlert(driver);
+		ja.Navigate_to_Modify();
+		
+	}
+
+	@When("updates {string} and {string} and clicks on Update Alert")
+	public void updates_and_and_clicks_on_Update_Alert(String skill, String location) {
+	   
+		JobAlert ja = new JobAlert(driver);
+		ja.updt_kwd_and_lcn(skill, location);
+	/*
+		driver.manage().timeouts().implicitlyWait(250,TimeUnit.SECONDS);
+		driver.findElement(By.id("Sug_kwdsugg")).clear();
+		driver.findElement(By.id("Sug_kwdsugg")).sendKeys(skill);
+		
+		driver.manage().timeouts().implicitlyWait(250,TimeUnit.SECONDS);
+		driver.findElement(By.id("Sug_locsugg")).clear();
+		driver.findElement(By.id("Sug_locsugg")).sendKeys(location);
+		
+		driver.findElement(By.id("cjaSubmit")).click();
+	*/	
+	}
+	
+	@Then("user should verify {string} and {string}")
+	public void user_should_verify_and(String skill, String location) {
+	   
+		JobAlert ja = new JobAlert(driver);
+		ja.vrfctn(skill, location);
+		/*
+		String skll = driver.findElement(By.xpath("//div[@id='cjaConfMsg']//following::span[1]")).getText();
+	    System.out.println(skll);
+	    String locn = driver.findElement(By.xpath("//div[@id='cjaConfMsg']//following::span[4]")).getText();
+	    System.out.println(locn);
+	    Assert.assertEquals(skill,skll);
+	    Assert.assertEquals(location,locn);
+	    */
+	}
+	
 	@After
 	public void after()
 	{
-		driver.close();
+		driver.quit();
 	}
 
 

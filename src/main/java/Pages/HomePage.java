@@ -30,6 +30,9 @@ public class HomePage {
 	
 	@FindBy(xpath="//button[text()='Login']")
 	WebElement Login_Btn;
+	
+	@FindBy(css="body > div:nth-child(2) > div > div > ul.midSec.menu > li:nth-child(2) > a > div")
+	WebElement Rcrtr;
 
 
 	public HomePage(WebDriver driver)
@@ -91,5 +94,50 @@ public class HomePage {
 			System.out.println(driver.getCurrentUrl());
 		}
 		
+	}
+	
+	public void click_recrtr()
+	{
+		String MW1=driver.getWindowHandle();
+		Set<String> wndw1 = driver.getWindowHandles();
+		@SuppressWarnings("rawtypes")
+		Iterator itr1 = wndw1.iterator();
+		while(itr1.hasNext())
+		{
+			String cw1 = itr1.next().toString();
+			if(!MW1.equalsIgnoreCase(cw1))
+			{
+				driver.switchTo().window(cw1);
+				driver.close();
+			}
+		}
+		driver.switchTo().window(MW1);
+		
+		String mw = driver.getWindowHandle();
+		
+	 //	WebElement Rcrtr = driver.findElement(By.cssSelector("body > div:nth-child(2) > div > div > ul.midSec.menu > li:nth-child(2) > a > div"));
+	   
+	   for(int i=0;i<7;i++)
+		{
+			try {
+				WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(700));
+				wait.until(ExpectedConditions.elementToBeClickable(Rcrtr));
+		        Rcrtr.click();
+		        break;
+			    }catch(Exception e)
+			    {
+			    	System.out.println(e.toString());
+			    }
+		}	
+			
+			  Set<String> wndw = driver.getWindowHandles();
+			   for(String s:wndw)
+			   {
+				   if (!s.equalsIgnoreCase(mw))
+				   {
+					  // System.out.println(s);
+					   driver.switchTo().window(s);
+				   }
+			   }
 	}
 }
