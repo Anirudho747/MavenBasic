@@ -1,24 +1,12 @@
 package stepDef;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.time.Duration;
-import java.util.Iterator;
-import java.util.Properties;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
-import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
+import Pages.Base;
 import Pages.HomePage;
 import Pages.Hover_over_Naukri;
 import Pages.JobAlert;
@@ -33,20 +21,26 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import io.github.bonigarcia.wdm.managers.ChromeDriverManager;
 
 
-public class sDef {
+public class sDef  {
 	
 	public static WebDriver driver;
+	Logger log = Logger.getLogger(sDef.class);
 	
 	@Before
 	public void before() 
 	{
 		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
+ 	   log.info("entering application URL");
+		log.warn("Hey this just a warning message");
+		log.fatal("hey this is just fatal error message");
+		log.debug("this is debug message");
 		driver.manage().window().maximize();
 		
+		
+		//driver=Base.driverInit();
 	}
 
      @Given("User is on homepage")
@@ -54,6 +48,7 @@ public class sDef {
     	 
     	   Load_HP lhp = new Load_HP(driver);
     	   lhp.load_HomePage();
+
 	}
 
 	@When("User clicks on Login Button")
