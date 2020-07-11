@@ -11,8 +11,11 @@ import io.cucumber.junit.CucumberOptions;
 		         glue= {"stepDef"},
 		         dryRun=false,
 		         monochrome=true,
-		         tags="@Alrt"
-		)
+		         tags="@Alrt",
+		         plugin= {"pretty","junit:target/JntRprtr/report.xml",
+      		                       "json:target/JsnRprtr/report.json", 
+      		                       "junit:target/HtmlRprtr/report.html" }
+		          )
    
 public class TestRunner {
 
